@@ -1,0 +1,22 @@
+{
+    "name": "kukulkan-popolvux/coinspaid-api-laravel",
+    "description": "The package provides a convenient interface for interacting with the api for the service https://coinspaid.com",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "7.4.x-dev"
+    },
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "kukulkan-popolvux",
+            "email": "popolvux2012@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "KukulkanPopolvux\\CoinspaidApiLaravel\\": "src"
+        }
+    }
+}
