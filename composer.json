@@ -3,7 +3,7 @@
     "description": "The package provides a convenient interface for interacting with the api for the service https://coinspaid.com",
     "type": "library",
     "require": {
-        "guzzlehttp/guzzle": "^7.0"
+        "guzzlehttp/guzzle": "^6.5 || ^7.0"
     },
     "license": "MIT",
     "version": "1.0.0",
