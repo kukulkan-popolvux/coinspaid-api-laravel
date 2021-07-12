@@ -55,11 +55,12 @@ class Response
     /**
      * Get property body in type object
      *
-     * @return object
+     * @param bool   $assoc   When true, returned objects will be converted
+     * @return object|array
      */
-    public function getBodyObject(): object
+    public function getBodyObject(bool $assoc = false)
     {
-        return \GuzzleHttp\json_decode($this->body);
+        return \GuzzleHttp\json_decode($this->body, $assoc);
     }
 
     /**
@@ -119,5 +120,18 @@ class Response
         $this->message = $message ?? '';
 
         return $this;
+    }
+
+    /**
+     * Returns the `data` value from the request response
+     *
+     * @param string $key
+     * @return string|array|null
+     */
+    public function getData(string $key = null)
+    {
+        $body = $this->getBodyObject(true);
+
+        return $body['data'][$key] ?? $body['data'] ?? null;
     }
 }

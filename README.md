@@ -112,6 +112,17 @@ or
 
 ---
 
+#### Example:
+
+```php
+\KukulkanPopolvux\CoinspaidApiLaravel\Coinspaid::getListCurrencies()->getData();
+```
+
+> Returns the `data` value from the request response.  
+> You can pass a parameter to a method `getData('currency')` that will return a value by the key that you passed as a parameter
+
+---
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
