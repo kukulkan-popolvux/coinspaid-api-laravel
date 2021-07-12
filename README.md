@@ -77,15 +77,16 @@ You can use the library immediately after configuration without specifying any a
 #### Example:
 
 ```php
-\KukulkanPopolvux\CoinspaidApiLaravel\Coinspaid::ping();
+\KukulkanPopolvux\CoinspaidApiLaravel\Coinspaid::ping()->getBody();
 ```
 
 or
 
 ```php
-\KukulkanPopolvux\CoinspaidApiLaravel\Coinspaid::run();
+\KukulkanPopolvux\CoinspaidApiLaravel\Coinspaid::run()->getBody();
 ```
 
+> The Response object is returned. Calling the `getBody()` method will return the response body  
 > The answer should return `OK`, it works without a secret key and an api key.  
 > This is just a test of the library connection and its interaction with the [CoinsPaid](https://coinspaid.com/) service.  
 > [documentation](https://docs.cryptoprocessing.com/api-documentation/api-reference#ping)
@@ -95,9 +96,16 @@ or
 #### Example:
 
 ```php
-\KukulkanPopolvux\CoinspaidApiLaravel\Coinspaid::getListCurrencies();
+\KukulkanPopolvux\CoinspaidApiLaravel\Coinspaid::getListCurrencies()->getBodyObject();
 ```
 
+or
+
+```php
+\KukulkanPopolvux\CoinspaidApiLaravel\Coinspaid::getListCurrencies()->getBody(true);
+```
+
+> `getBodyObject()` will return the response body converted to object or you can use `getBody(true)` method with parameter `true`  
 > This example shows a method in which the values of the secret key and api key will already be required.  
 > Get a list of all supported currencies.  
 > [documentation](https://docs.cryptoprocessing.com/api-documentation/api-reference#get-list-of-supported-currencies)

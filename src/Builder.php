@@ -2,6 +2,8 @@
 
 namespace KukulkanPopolvux\CoinspaidApiLaravel;
 
+use KukulkanPopolvux\CoinspaidApiLaravel\Response;
+
 
 class Builder
 {
@@ -227,9 +229,9 @@ class Builder
     /**
      * Get property response
      *
-     * @return string|null
+     * @return \KukulkanPopolvux\CoinspaidApiLaravelResponse|null
      */
-    public function getResponse(): ?string
+    public function getResponse(): ?Response
     {
         return $this->response;
     }
@@ -237,10 +239,10 @@ class Builder
     /**
      * Set property response
      *
-     * @param string $response
+     * @param \KukulkanPopolvux\CoinspaidApiLaravelResponse $response
      * @return self
      */
-    public function setResponse(string $response): self
+    public function setResponse(Response $response): self
     {
         $this->response = $response;
 

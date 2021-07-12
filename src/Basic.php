@@ -2,18 +2,18 @@
 
 namespace KukulkanPopolvux\CoinspaidApiLaravel;
 
-use KukulkanPopolvux\CoinspaidApiLaravel\Builder;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\{Client, RequestOptions};
 use GuzzleHttp\Exception\TransferException;
+use KukulkanPopolvux\CoinspaidApiLaravel\{Builder, Response};
 
 class Basic extends Builder
 {
     /**
      *
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function run():string
+    static public function run(): ?Response
     {
         return (new static)->request();
     }
@@ -24,20 +24,29 @@ class Basic extends Builder
      * @param string|null $method
      * @param array|null $parameters
      * @param array|null $headers
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function request(?string $pathName = null, ?string $method = null, ?array $parameters = [], ?array $headers = []):string
+    public function request(?string $pathName = null, ?string $method = null, ?array $parameters = [], ?array $headers = []): ?Response
     {
         try {
             $response = $this->setBasicProperties()->setBasicDataRequest($pathName, $method, $parameters, $headers)->httpClient();
-
-            $this->setResponse($response->getBody()->getContents())->setHttpCode($response->getStatusCode());
+            
+            $this->setResponse(new Response(
+                $response->getHeaders(),
+                $response->getStatusCode(),
+                $response->getBody()->getContents()
+            ));
         } catch (TransferException $e) {
-            Log::error($e->getMessage());
+            $this->setResponse(new Response(
+                $e->getResponse()->getHeaders(),
+                $e->getResponse()->getStatusCode(),
+                $e->getResponse()->getBody()->getContents(),
+                $e->getMessage()
+            ));
 
-            $this->setResponse($e->getMessage())->setHttpCode($e->getCode());
+            report($e);
         } finally {
-            return json_encode(['code' => $this->getHttpCode(), 'response' => $this->getResponse()]);
+            return $this->getResponse();
         }
     }
 

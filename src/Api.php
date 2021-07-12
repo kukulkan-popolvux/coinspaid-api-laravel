@@ -3,7 +3,7 @@
 namespace KukulkanPopolvux\CoinspaidApiLaravel;
 
 
-use KukulkanPopolvux\CoinspaidApiLaravel\Basic;
+use KukulkanPopolvux\CoinspaidApiLaravel\{Basic, Response};
 
 final class Api extends Basic
 {
@@ -105,9 +105,9 @@ final class Api extends Basic
      *
      * @link https://docs.cryptoprocessing.com/api-documentation/api-reference#ping
      *
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function ping():string
+    public function ping(): ?Response
     {
         return $this->setMethod('get')->setPathName(self::PING)->request();
     }
@@ -120,9 +120,9 @@ final class Api extends Basic
      * @link https://docs.cryptoprocessing.com/api-documentation/api-reference#get-list-of-supported-currencies
      *
      * @param boolean|null $visible
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function getListCurrencies(?bool $visible = null):string
+    public function getListCurrencies(?bool $visible = null): ?Response
     {
         return $this->setMethod('post')->setPathName(self::LIST_CURRENCIES)->addParameter('visible', (string) $visible)->request();
     }
@@ -136,9 +136,9 @@ final class Api extends Basic
      *
      * @param string|null $currencyFrom
      * @param string|null $currencyTo
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function getListCurrencyPairs(?string $currencyFrom = null, ?string $currencyTo = null):string
+    public function getListCurrencyPairs(?string $currencyFrom = null, ?string $currencyTo = null): ?Response
     {
         return $this->setMethod('post')
                     ->setPathName(self::LIST_CURRENCY_PAIRS)
@@ -156,9 +156,9 @@ final class Api extends Basic
      *
      * @param string|null $currencyFrom
      * @param string|null $currencyTo
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function getListCurrenciesRates(?string $currencyFrom = null, ?string $currencyTo = null):string
+    public function getListCurrenciesRates(?string $currencyFrom = null, ?string $currencyTo = null): ?Response
     {
         return $this->setMethod('post')
                     ->setPathName(self::LIST_CURRENCIES_RATES)
@@ -174,9 +174,9 @@ final class Api extends Basic
      *
      * @link https://docs.cryptoprocessing.com/api-documentation/api-reference#get-list-of-balances
      *
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function getListBalances():string
+    public function getListBalances(): ?Response
     {
         return $this->setMethod('post')->setPathName(self::LIST_BALANCES)->request();
     }
@@ -191,9 +191,9 @@ final class Api extends Basic
      * @param string $foreignId
      * @param string $currency
      * @param string|null $convertTo
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function receiveCryptocurrency(string $foreignId, string $currency, ?string $convertTo = null):string
+    public function receiveCryptocurrency(string $foreignId, string $currency, ?string $convertTo = null): ?Response
     {
         return $this->setMethod('post')
                     ->setPathName(self::RECEIVE_CRYPTOCURRENCY)
@@ -216,7 +216,7 @@ final class Api extends Basic
      * @param string $address
      * @param string|null $convertTo
      * @param string $tag
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
     public function withdrawCryptocurrency(
         string $foreignId,
@@ -225,7 +225,7 @@ final class Api extends Basic
         string $address,
         ?string $convertTo = null,
         string $tag = null
-    ):string {
+    ): ?Response {
         return $this->setMethod('post')
                     ->setPathName(self::WITHDRAW_CRYPTOCURRENCY)
                     ->addParameter('foreign_id', $foreignId)
@@ -251,9 +251,9 @@ final class Api extends Basic
      * @param string $receiverCurrency
      * @param string|null $senderAmount
      * @param string|null $receiverAmount
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function exchangeCalculate(string $senderCurrency, string $receiverCurrency, ?string $senderAmount = null, ?string $receiverAmount):string
+    public function exchangeCalculate(string $senderCurrency, string $receiverCurrency, ?string $senderAmount = null, ?string $receiverAmount): ?Response
     {
         return $this->setMethod('post')
                     ->setPathName(self::EXCHANGE_CALCULATE)
@@ -276,9 +276,9 @@ final class Api extends Basic
      * @param string $receiverCurrency
      * @param string $senderAmount
      * @param string $price
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function exchangeFixed(string $foreignId, string $senderCurrency, string $receiverCurrency, string $senderAmount, string $price):string
+    public function exchangeFixed(string $foreignId, string $senderCurrency, string $receiverCurrency, string $senderAmount, string $price): ?Response
     {
         return $this->setMethod('post')
                     ->setPathName(self::EXCHANGE_FIXED)
@@ -301,9 +301,9 @@ final class Api extends Basic
      * @param string $senderCurrency
      * @param string $receiverCurrency
      * @param string $senderAmount
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function exchangeNow(string $foreignId, string $senderCurrency, string $receiverCurrency, string $senderAmount):string
+    public function exchangeNow(string $foreignId, string $senderCurrency, string $receiverCurrency, string $senderAmount): ?Response
     {
         return $this->setMethod('post')
                     ->setPathName(self::EXCHANGE_NOW)
@@ -322,9 +322,9 @@ final class Api extends Basic
      * @link https://docs.cryptoprocessing.com/api-documentation/api-reference#calculate-rates-for-futures
      *
      * @param string $address
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function futuresRates(string $address):string
+    public function futuresRates(string $address): ?Response
     {
         return $this->setMethod('post')->setPathName(self::FUTURES_RATES)->addParameter('address', $address)->request();
     }
@@ -340,9 +340,9 @@ final class Api extends Basic
      * @param string $senderCurrency
      * @param string $receiverCurrency
      * @param string $receiverAmount
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    public function futuresConfirm(string $address, string $senderCurrency, string $receiverCurrency, string $receiverAmount):string
+    public function futuresConfirm(string $address, string $senderCurrency, string $receiverCurrency, string $receiverAmount): ?Response
     {
         return $this->setMethod('post')
                     ->setPathName(self::FUTURES_CONFIRM)
@@ -370,7 +370,7 @@ final class Api extends Basic
      * @param string $emailUser
      * @param string|null $senderCurrency
      * @param string|null $description
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
     public function createInvoices(
         string $foreignId,
@@ -383,7 +383,7 @@ final class Api extends Basic
         string $emailUser,
         ?string $senderCurrency = null,
         ?string $description = null
-    ):string {
+    ): ?Response {
         return $this->setMethod('post')
                     ->setPathName(self::CREATE_INVOICES)
                     ->addParameter('foreign_id', $foreignId)

@@ -3,7 +3,7 @@
 namespace KukulkanPopolvux\CoinspaidApiLaravel;
 
 
-use KukulkanPopolvux\CoinspaidApiLaravel\{Builder, Basic, Api};
+use KukulkanPopolvux\CoinspaidApiLaravel\{Builder, Basic, Api, Response};
 
 final class Coinspaid
 {
@@ -39,9 +39,9 @@ final class Coinspaid
 
     /**
      *
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function run():string
+    static public function run(): ?Response
     {
         return self::basic()::run();
     }
@@ -52,9 +52,9 @@ final class Coinspaid
      * @param string|null $method
      * @param array|null $parameters
      * @param array|null $headers
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function request(?string $pathName = null, ?string $method = null, ?array $parameters = [], ?array $headers = []):string
+    static public function request(?string $pathName = null, ?string $method = null, ?array $parameters = [], ?array $headers = []): ?Response
     {
         return self::basic()->request($pathName, $method, $parameters, $headers);
     }
@@ -66,9 +66,9 @@ final class Coinspaid
      *
      * @link https://docs.cryptoprocessing.com/api-documentation/api-reference#ping
      *
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function ping():string
+    static public function ping(): ?Response
     {
         return self::api()->ping();
     }
@@ -81,9 +81,9 @@ final class Coinspaid
      * @link https://docs.cryptoprocessing.com/api-documentation/api-reference#get-list-of-supported-currencies
      *
      * @param boolean|null $visible
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function getListCurrencies(?bool $visible = null):string
+    static public function getListCurrencies(?bool $visible = null): ?Response
     {
         return self::api()->getListCurrencies($visible);
     }
@@ -97,9 +97,9 @@ final class Coinspaid
      *
      * @param string|null $currencyFrom
      * @param string|null $currencyTo
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function getListCurrencyPairs(?string $currencyFrom = null, ?string $currencyTo = null):string
+    static public function getListCurrencyPairs(?string $currencyFrom = null, ?string $currencyTo = null): ?Response
     {
         return self::api()->getListCurrencyPairs($currencyFrom, $currencyTo);
     }
@@ -113,9 +113,9 @@ final class Coinspaid
      *
      * @param string|null $currencyFrom
      * @param string|null $currencyTo
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function getListCurrenciesRates(?string $currencyFrom = null, ?string $currencyTo = null):string
+    static public function getListCurrenciesRates(?string $currencyFrom = null, ?string $currencyTo = null): ?Response
     {
         return self::api()->getListCurrenciesRates($currencyFrom, $currencyTo);
     }
@@ -127,9 +127,9 @@ final class Coinspaid
      *
      * @link https://docs.cryptoprocessing.com/api-documentation/api-reference#get-list-of-balances
      *
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function getListBalances():string
+    static public function getListBalances(): ?Response
     {
         return self::api()->getListBalances();
     }
@@ -144,9 +144,9 @@ final class Coinspaid
      * @param string $foreignId
      * @param string $currency
      * @param string|null $convertTo
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function receiveCryptocurrency(string $foreignId, string $currency, ?string $convertTo = null):string
+    static public function receiveCryptocurrency(string $foreignId, string $currency, ?string $convertTo = null): ?Response
     {
         return self::api()->receiveCryptocurrency($foreignId, $currency, $convertTo);
     }
@@ -164,7 +164,7 @@ final class Coinspaid
      * @param string $address
      * @param string|null $convertTo
      * @param string $tag
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
     static public function withdrawCryptocurrency(
         string $foreignId,
@@ -173,7 +173,7 @@ final class Coinspaid
         string $address,
         ?string $convertTo = null,
         string $tag = null
-    ):string {
+    ): ?Response {
         return self::api()->withdrawCryptocurrency($foreignId, $amount, $currency, $address, $convertTo, $tag);
     }
 
@@ -191,14 +191,14 @@ final class Coinspaid
      * @param string $receiverCurrency
      * @param string|null $senderAmount
      * @param string|null $receiverAmount
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
     static public function exchangeCalculate(
         string $senderCurrency,
         string $receiverCurrency,
         ?string $senderAmount = null,
         ?string $receiverAmount
-    ):string {
+    ): ?Response {
         return self::api()->exchangeCalculate($senderCurrency, $receiverCurrency, $senderAmount, $receiverAmount);
     }
 
@@ -214,7 +214,7 @@ final class Coinspaid
      * @param string $receiverCurrency
      * @param string $senderAmount
      * @param string $price
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
     static public function exchangeFixed(
         string $foreignId,
@@ -222,7 +222,7 @@ final class Coinspaid
         string $receiverCurrency,
         string $senderAmount,
         string $price
-    ):string {
+    ): ?Response {
         return self::api()->exchangeFixed($foreignId, $senderCurrency, $receiverCurrency, $senderAmount, $price);
     }
 
@@ -237,9 +237,9 @@ final class Coinspaid
      * @param string $senderCurrency
      * @param string $receiverCurrency
      * @param string $senderAmount
-     * @return string|null
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function exchangeNow(string $foreignId, string $senderCurrency, string $receiverCurrency, string $senderAmount):string
+    static public function exchangeNow(string $foreignId, string $senderCurrency, string $receiverCurrency, string $senderAmount): ?Response
     {
         return self::api()->exchangeNow($foreignId, $senderCurrency, $receiverCurrency, $senderAmount);
     }
@@ -252,9 +252,9 @@ final class Coinspaid
      * @link https://docs.cryptoprocessing.com/api-documentation/api-reference#calculate-rates-for-futures
      *
      * @param string $address
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function futuresRates(string $address):string
+    static public function futuresRates(string $address): ?Response
     {
         return self::api()->futuresRates($address);
     }
@@ -270,9 +270,9 @@ final class Coinspaid
      * @param string $senderCurrency
      * @param string $receiverCurrency
      * @param string $receiverAmount
-     * @return string|null
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
-    static public function futuresConfirm(string $address, string $senderCurrency, string $receiverCurrency, string $receiverAmount):string
+    static public function futuresConfirm(string $address, string $senderCurrency, string $receiverCurrency, string $receiverAmount): ?Response
     {
         return self::api()->futuresConfirm($address, $senderCurrency, $receiverCurrency, $receiverAmount);
     }
@@ -294,7 +294,7 @@ final class Coinspaid
      * @param string $emailUser
      * @param string|null $senderCurrency
      * @param string|null $description
-     * @return string
+     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
      */
     static public function createInvoices(
         string $foreignId,
@@ -307,7 +307,7 @@ final class Coinspaid
         string $emailUser,
         ?string $senderCurrency = null,
         ?string $description = null
-    ):string {
+    ): ?Response {
         return self::api()->createInvoices($foreignId, $currency, $amount, $title, $timer, $urlSuccess, $urlFailed, $emailUser, $senderCurrency, $description);
     }
 }
