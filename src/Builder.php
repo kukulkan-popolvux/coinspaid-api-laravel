@@ -381,7 +381,7 @@ class Builder
      *
      * @param string $key
      * @param string|null $value
-     * @param bool $valueBool
+     * @param boolean $valueBool
      * @return self
      */
     public function addParameter(string $key, ?string $value = null, bool $valueBool = false): self
