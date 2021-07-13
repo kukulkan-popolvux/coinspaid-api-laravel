@@ -381,11 +381,12 @@ class Builder
      *
      * @param string $key
      * @param string|null $value
+     * @param bool $valueBool
      * @return self
      */
-    public function addParameter(string $key, ?string $value = null): self
+    public function addParameter(string $key, ?string $value = null, bool $valueBool = false): self
     {
-        if (!empty($value)) {
+        if (!empty($value) || $valueBool) {
             $this->parameters[$key] = $value;
         }
 

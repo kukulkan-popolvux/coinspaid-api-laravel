@@ -124,7 +124,7 @@ final class Api extends Basic
      */
     public function getListCurrencies(?bool $visible = null): ?Response
     {
-        return $this->setMethod('post')->setPathName(self::LIST_CURRENCIES)->addParameter('visible', (string) $visible)->request();
+        return $this->setMethod('post')->setPathName(self::LIST_CURRENCIES)->addParameter('visible', (int) $visible, true)->request();
     }
 
     /**
@@ -390,7 +390,7 @@ final class Api extends Basic
                     ->addParameter('currency', $currency)
                     ->addParameter('amount', $amount)
                     ->addParameter('title', $title)
-                    ->addParameter('timer', $timer)
+                    ->addParameter('timer', (int) $timer, true)
                     ->addParameter('url_success', $urlSuccess)
                     ->addParameter('url_failed', $urlFailed)
                     ->addParameter('email_user', $emailUser)
