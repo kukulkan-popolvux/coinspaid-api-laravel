@@ -1,6 +1,7 @@
 {
     "name": "kukulkan-popolvux/coinspaid-api-laravel",
     "description": "The package provides a convenient interface for interacting with the api for the service https://coinspaid.com",
+    "keywords": ["coinspaid", "package", "laravel", "php", "cryptocurrency", "api", "bitcoin"],
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^6.5 || ^7.0"

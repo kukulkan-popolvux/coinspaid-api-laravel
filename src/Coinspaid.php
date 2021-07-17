@@ -3,6 +3,24 @@
 namespace KukulkanPopolvux\CoinspaidApiLaravel;
 
 
+/**
+ * @method static ?Response run()
+ * @method static ?Response ping()
+ * @method static ?Response request(?string $pathName = null, ?string $method = null, ?array $parameters = [], ?array $headers = [])
+ * @method static ?Response getListCurrencies(?bool $visible = true)
+ * @method static ?Response getListCurrencyPairs(?string $currencyFrom = null, ?string $currencyTo = null)
+ * @method static ?Response getListCurrenciesRates(?string $currencyFrom = null, ?string $currencyTo = null)
+ * @method static ?Response getListBalances()
+ * @method static ?Response receiveCryptocurrency(string $foreignId, string $currency, ?string $convertTo = null)
+ * @method static ?Response withdrawCryptocurrency(string $foreignId, string $amount, string $currency, string $address, ?string $convertTo = null, string $tag = null)
+ * @method static ?Response exchangeCalculate(string $senderCurrency, string $receiverCurrency, ?string $senderAmount = null, ?string $receiverAmount)
+ * @method static ?Response exchangeFixed(string $foreignId, string $senderCurrency, string $receiverCurrency, string $senderAmount, string $price)
+ * @method static ?Response exchangeNow(string $foreignId, string $senderCurrency, string $receiverCurrency, string $senderAmount)
+ * @method static ?Response futuresRates(string $address)
+ * @method static ?Response futuresConfirm(string $address, string $senderCurrency, string $receiverCurrency, string $receiverAmount)
+ * @method static ?Response createInvoices(string $foreignId, string $currency, float $amount, string $title, bool $timer, string $urlSuccess, string $urlFailed, string $emailUser, ?string $senderCurrency = null, ?string $description = null)
+ */
+
 use KukulkanPopolvux\CoinspaidApiLaravel\{Builder, Basic, Api, Response};
 
 final class Coinspaid
@@ -37,29 +55,7 @@ final class Coinspaid
         return new Api;
     }
 
-    /**
-     *
-     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
-     */
-    static public function run(): ?Response
-    {
-        return self::basic()::run();
-    }
-
-    /**
-     *
-     * @param string|null $pathName
-     * @param string|null $method
-     * @param array|null $parameters
-     * @param array|null $headers
-     * @return \KukulkanPopolvux\CoinspaidApiLaravel\Response|null
-     */
-    static public function request(?string $pathName = null, ?string $method = null, ?array $parameters = [], ?array $headers = []): ?Response
-    {
-        return self::basic()->request($pathName, $method, $parameters, $headers);
-    }
-
-    static public function __callStatic($method, $arguments)
+    static public function __callStatic($method, $arguments): ?Response
     {
         return self::api()->$method(...$arguments);
     }
