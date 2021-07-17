@@ -1,6 +1,6 @@
 # coinspaid-api-laravel
 
-The package provides a convenient interface for interacting with the api for the service [CoinsPaid](https://coinspaid.com/)
+The package provides a convenient interface for interacting with the API (v2) for the service [CoinsPaid](https://coinspaid.com/)
 
 ## Installation
 

@@ -7,7 +7,7 @@ namespace KukulkanPopolvux\CoinspaidApiLaravel;
  * @method static ?Response run()
  * @method static ?Response ping()
  * @method static ?Response request(?string $pathName = null, ?string $method = null, ?array $parameters = [], ?array $headers = [])
- * @method static ?Response getListCurrencies(?bool $visible = true)
+ * @method static ?Response getListCurrencies(?bool $visible = null)
  * @method static ?Response getListCurrencyPairs(?string $currencyFrom = null, ?string $currencyTo = null)
  * @method static ?Response getListCurrenciesRates(?string $currencyFrom = null, ?string $currencyTo = null)
  * @method static ?Response getListBalances()
