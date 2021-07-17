@@ -124,7 +124,7 @@ final class Api extends Basic
      */
     public function getListCurrencies(?bool $visible = null): ?Response
     {
-        return $this->setMethod('post')->setPathName(self::LIST_CURRENCIES)->addParameter('visible', (int) $visible, true)->request();
+        return $this->setMethod('post')->setPathName(self::LIST_CURRENCIES)->addParameter('visible', (int) $visible, ($visible !== null))->request();
     }
 
     /**
